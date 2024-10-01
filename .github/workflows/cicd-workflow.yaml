@@ -45,13 +45,13 @@ jobs:
         id: task-def
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
-          task-definition: reg-app-task-definition.json
-          container-name: reg-app-1-oct
+          task-definition: task-defination1.json
+          container-name: image
           image: ${{ steps.build-image.outputs.image }}    
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
-          service: reg-app-service-1oct
-          cluster: DevCluster-reg-app-1-oct
+          service: test-service
+          cluster: test-cluster
           wait-for-service-stability: true
